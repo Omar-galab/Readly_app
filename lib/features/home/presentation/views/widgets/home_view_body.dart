@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:readly/core/utils/styles.dart';
+import 'package:readly/features/home/presentation/views/widgets/best_seller_listview_item.dart';
 import 'package:readly/features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:readly/features/home/presentation/views/widgets/featured_books_list_view.dart';
 
@@ -15,8 +16,10 @@ class HomeViewBody extends StatelessWidget {
         children:const [
          CustomAppBar(),
          FeatureListViewItems(),
-         const SizedBox(height: 50,),
-         Text('Best Seller' ,style: Styles.titleMedium,),
+          SizedBox(height: 50,),
+         Text('Best Seller' ,style: Styles.textStyles18,),
+          SizedBox(height: 20,),
+          BestSellerListviewItem(),
       
         ]
       ),
