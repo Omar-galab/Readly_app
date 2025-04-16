@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:readly/constans.dart';
 import 'package:readly/core/utils/assets.dart';
 import 'package:readly/features/splash/presentation/views/widget/sliding_text.dart';
+
+import '../../../../home/presentation/views/home_view.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -16,6 +21,31 @@ class _SplashViewBodyState extends State<SplashViewBody>
   @override
   void initState() {
     super.initState();
+    initSlidingAnimation();
+    navigateToHome();
+  }
+
+  
+
+  @override
+  void dispose() {
+    super.dispose();
+    // Dispose of the animation controller when the widget is removed from the widget tree
+    animationController.dispose();
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Image.asset(AssetsData.logo, width: 200, height: 50),
+        SlidingText(animation: animation),
+      ],
+    );
+  }
+
+  void initSlidingAnimation() {
     animationController = AnimationController(
       vsync: this,
       duration: Duration(seconds: 2),
@@ -29,23 +59,13 @@ class _SplashViewBodyState extends State<SplashViewBody>
     });
     animationController.forward();
   }
-  @override
-  void dispose() {
-    super.dispose();
-    // Dispose of the animation controller when the widget is removed from the widget tree
-    animationController.dispose();
-    
-  }
-
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Image.asset(AssetsData.logo, width: 200, height: 50),
-        SlidingText(animation: animation),
-      ],
-    );
+  void navigateToHome() {
+    Future.delayed(const Duration(seconds: 2), () {
+      Get.to(
+        () => const HomeView(),
+        transition: Transition.fade,
+        duration: kTranstionDuration,
+      );
+    });
   }
 }
-
