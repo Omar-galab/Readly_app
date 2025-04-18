@@ -4,15 +4,18 @@ import 'package:readly/core/utils/assets.dart';
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(  top: 50  ,bottom: 20),
+      padding: const EdgeInsets.only(right: 24, left: 24, top: 50, bottom: 20),
       child: Row(
         children: [
-          Image.asset(AssetsData.logo, height: 25,),
+          Image.asset(AssetsData.logo, height: 25),
           const Spacer(),
-          IconButton(onPressed: () {}, icon: Icon(Icons.search ,  size: 30,)),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.search, size: 30),
+          ),
         ],
       ),
     );
