@@ -1,17 +1,33 @@
 import 'package:dartz/dartz.dart';
 import 'package:readly/core/errors/failuers.dart';
+import 'package:readly/core/utils/api_service.dart';
 import 'package:readly/features/home/data/models/book_model/book_model.dart';
 import 'package:readly/features/home/data/repos/home_repo.dart';
 
 class HomeRepoImpl extends HomeRepo {
+  final ApiService apiService;
+
+  HomeRepoImpl(this.apiService);
   @override
-  Future<List<Either<List<BookModel>, Failure>>> featchBestSellerBooks() {
+  Future<Either<Failure, List<BookModel>>> fetchNewsetBooks() async {
     // TODO: implement featchBestSellerBooks
-    throw UnimplementedError();
+    try {
+      var data = await apiService.get(
+        endPoint:
+            'volumes?Filtering=free-ebooks&Sorting=newest&q=subject:programming',
+      );
+      List<BookModel> books = [];
+      for (var item in data['items']) {
+        books.add(BookModel.fromJson(item));
+      }
+      return right(books);
+    } catch (e) {
+      return left(ServerFailure());
+    }
   }
 
   @override
-  Future<List<Either<List<BookModel>, Failure>>> featchFeaturedBooks() {
+  Future<Either<Failure, List<BookModel>>> fetchFeaturedBooks() {
     // TODO: implement featchFeaturedBooks
     throw UnimplementedError();
   }
