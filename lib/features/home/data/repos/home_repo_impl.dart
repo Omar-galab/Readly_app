@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:readly/core/errors/failuers.dart';
 import 'package:readly/core/utils/api_service.dart';
 import 'package:readly/features/home/data/models/book_model/book_model.dart';
@@ -22,7 +23,10 @@ class HomeRepoImpl extends HomeRepo {
       }
       return right(books);
     } catch (e) {
-      return left(ServerFailure());
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
     }
   }
 

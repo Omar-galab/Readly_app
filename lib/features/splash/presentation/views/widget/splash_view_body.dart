@@ -32,6 +32,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     animationController.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +47,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void initSlidingAnimation() {
     animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
     animation = Tween<Offset>(
       begin: const Offset(0, 10),
