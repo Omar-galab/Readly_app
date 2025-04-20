@@ -1,16 +1,12 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readly/constans.dart';
-import 'package:readly/core/utils/api_service.dart';
+import 'package:readly/core/utils/app_router.dart';
 import 'package:readly/core/utils/service_locator.dart';
-import 'package:readly/features/home/data/repos/home_repo.dart';
 import 'package:readly/features/home/data/repos/home_repo_impl.dart';
 import 'package:readly/features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
 import 'package:readly/features/home/presentation/manger/newest_book_cubit/newset_books_cubit.dart';
-import 'package:readly/features/splash/presentation/views/splash_view.dart';
 
 void main() {
   setupserviceLocator();
@@ -38,7 +34,8 @@ class ReadlyApp extends StatelessWidget {
                     ..fetchNewestBooks(),
         ),
       ],
-      child: GetMaterialApp(
+      child: MaterialApp.router(
+        routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: kprimaryColor,
@@ -46,8 +43,6 @@ class ReadlyApp extends StatelessWidget {
             ThemeData.dark().textTheme,
           ),
         ),
-
-        home: const SplashView(),
       ),
     );
   }
