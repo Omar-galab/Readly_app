@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:readly/core/utils/styles.dart';
 import 'package:readly/features/book_details/Widget/custom_book_appbar_details.dart';
+import 'package:readly/features/home/presentation/views/home/widgets/book_rating.dart';
 import 'package:readly/features/home/presentation/views/home/widgets/custom_book_image.dart';
 import 'package:readly/features/home/presentation/views/home/widgets/featured_books_list_view.dart';
 
@@ -33,6 +34,12 @@ class BookDetailsBody extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
+        ),
+        const SizedBox(height: 16),
+        const BookRating(
+          rating: 4.8,
+          count: 168,
+          mainAxisAlignment: MainAxisAlignment.center,
         ),
       ],
     );
