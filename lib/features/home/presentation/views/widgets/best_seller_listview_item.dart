@@ -2,31 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:readly/constans.dart';
 import 'package:readly/core/utils/assets.dart';
 import 'package:readly/core/utils/styles.dart';
+import 'package:readly/features/home/data/models/book_model/book_model.dart';
 import 'package:readly/features/home/presentation/views/widgets/book_rating.dart';
+import 'package:readly/features/home/presentation/views/widgets/custom_list_view_items.dart';
 
 class BestSellerListviewItem extends StatelessWidget {
-  const BestSellerListviewItem({super.key});
-
+  const BestSellerListviewItem({super.key, required this.bookModel});
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 130,
       child: Row(
         children: [
-          AspectRatio(
-            aspectRatio: 2.6 / 4,
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.25,
-              width: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-
-                image: const DecorationImage(
-                  image: AssetImage(AssetsData.book),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+          CustomListViewItems(
+            imageUrl: bookModel.volumeInfo.imageLinks.thumbnail,
           ),
           const SizedBox(width: 30),
           Expanded(
@@ -36,7 +26,7 @@ class BestSellerListviewItem extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.5,
                   child: Text(
-                    'Harry Potter and the Goblet of Fire ',
+                    bookModel.volumeInfo.title!,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: Styles.textStyles20.copyWith(
@@ -45,18 +35,24 @@ class BestSellerListviewItem extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 3),
-                const Text('J.K Rowling', style: Styles.textStyles14),
+                Text(
+                  bookModel.volumeInfo.authors![0],
+                  style: Styles.textStyles14,
+                ),
                 const SizedBox(height: 3),
                 Row(
                   children: [
                     Text(
-                      '19.99 \$',
+                      'Free',
                       style: Styles.textStyles20.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const Spacer(),
-                    const BookRating(),
+                    BookRating(
+                      rating: bookModel.volumeInfo.averageRating ?? 0,
+                      count: bookModel.volumeInfo.ratingsCount ?? 0,
+                    ),
                   ],
                 ),
               ],

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:readly/core/widgets/custom_error_widget.dart';
+import 'package:readly/features/home/presentation/manger/newest_book_cubit/newset_books_cubit.dart';
 import 'package:readly/features/home/presentation/views/widgets/best_seller_listview_item.dart';
 
 class BestSellerListView extends StatelessWidget {
@@ -6,18 +9,28 @@ class BestSellerListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        // ignore: prefer_const_constructors
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: const BestSellerListviewItem(),
-        );
+    return BlocBuilder<NewsetBooksCubit, NewsetBooksState>(
+      builder: (context, state) {
+        if (state is NewsetBooksSuccess) {
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              // ignore: prefer_const_constructors
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: BestSellerListviewItem(bookModel: state.books[index]),
+              );
+            },
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            padding: EdgeInsets.zero,
+            itemCount: state.books.length,
+          );
+        } else if (state is NewsetBooksFailure) {
+          return CustomErrorWidget(errMessage: state.errMessage);
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
       },
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      padding: EdgeInsets.zero,
-      itemCount: 10,
     );
   }
 }
