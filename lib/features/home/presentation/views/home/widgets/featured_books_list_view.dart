@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:readly/core/widgets/custom_error_widget.dart';
 import 'package:readly/core/widgets/custom_loding_indecators.dart';
 import 'package:readly/features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
-import 'package:readly/features/home/presentation/views/widgets/custom_list_view_items.dart';
+import 'package:readly/features/home/presentation/views/home/widgets/custom_list_view_items.dart';
 
 class FeatureListViewItems extends StatelessWidget {
   const FeatureListViewItems({super.key});

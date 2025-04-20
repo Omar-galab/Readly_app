@@ -3,8 +3,8 @@ import 'package:readly/constans.dart';
 import 'package:readly/core/utils/assets.dart';
 import 'package:readly/core/utils/styles.dart';
 import 'package:readly/features/home/data/models/book_model/book_model.dart';
-import 'package:readly/features/home/presentation/views/widgets/book_rating.dart';
-import 'package:readly/features/home/presentation/views/widgets/custom_list_view_items.dart';
+import 'package:readly/features/home/presentation/views/home/widgets/book_rating.dart';
+import 'package:readly/features/home/presentation/views/home/widgets/custom_list_view_items.dart';
 
 class BestSellerListviewItem extends StatelessWidget {
   const BestSellerListviewItem({super.key, required this.bookModel});

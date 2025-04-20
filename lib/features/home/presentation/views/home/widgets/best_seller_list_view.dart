@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:readly/core/widgets/custom_error_widget.dart';
 import 'package:readly/features/home/presentation/manger/newest_book_cubit/newset_books_cubit.dart';
-import 'package:readly/features/home/presentation/views/widgets/best_seller_listview_item.dart';
+import 'package:readly/features/home/presentation/views/home/widgets/best_seller_listview_item.dart';
 
 class BestSellerListView extends StatelessWidget {
   const BestSellerListView({super.key});

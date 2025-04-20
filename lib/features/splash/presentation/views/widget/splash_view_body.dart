@@ -5,7 +5,7 @@ import 'package:readly/constans.dart';
 import 'package:readly/core/utils/assets.dart';
 import 'package:readly/features/splash/presentation/views/widget/sliding_text.dart';
 
-import '../../../../home/presentation/views/home_view.dart';
+import '../../../../home/presentation/views/home/home_view.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
