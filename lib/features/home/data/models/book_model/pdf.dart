@@ -1,29 +1,21 @@
-import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
 
 class Pdf extends Equatable {
   final bool? isAvailable;
+  final String? acsTokenLink;
 
-  const Pdf({this.isAvailable});
+  const Pdf({this.isAvailable, this.acsTokenLink});
 
-  factory Pdf.fromMap(Map<String, dynamic> data) =>
-      Pdf(isAvailable: data['isAvailable'] as bool?);
+  factory Pdf.fromJson(Map<String, dynamic> json) => Pdf(
+        isAvailable: json['isAvailable'] as bool?,
+        acsTokenLink: json['acsTokenLink'] as String?,
+      );
 
-  Map<String, dynamic> toMap() => {'isAvailable': isAvailable};
-
-  /// `dart:convert`
-  ///
-  /// Parses the string and returns the resulting Json object as [Pdf].
-  factory Pdf.fromJson(String data) {
-    return Pdf.fromMap(json.decode(data) as Map<String, dynamic>);
-  }
-
-  /// `dart:convert`
-  ///
-  /// Converts [Pdf] to a JSON string.
-  String toJson() => json.encode(toMap());
+  Map<String, dynamic> toJson() => {
+        'isAvailable': isAvailable,
+        'acsTokenLink': acsTokenLink,
+      };
 
   @override
-  List<Object?> get props => [isAvailable];
+  List<Object?> get props => [isAvailable, acsTokenLink];
 }

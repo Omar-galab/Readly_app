@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:readly/features/home/data/models/book_model/book_model.dart';
 import 'package:readly/features/home/data/repos/home_repo.dart';
-import 'package:readly/features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
 
 part 'newset_books_state.dart';
 
