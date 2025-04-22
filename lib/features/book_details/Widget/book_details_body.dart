@@ -14,53 +14,62 @@ class BookDetailsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Column(
-        children: [
-          const CustomBookAppbarDetails(),
-          const SizedBox(height: 10),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.18),
-            child: const CustomBookImage(
-              imageUrl:
-                  'https://lumiere-a.akamaihd.net/v1/images/p_thejunglebook2016_19751_6b8cfcec.jpeg?region=0%2C0%2C540%2C810',
+    return CustomScrollView(
+      slivers: [
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              children: [
+                const CustomBookAppbarDetails(),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: width * 0.18),
+                  child: const CustomBookImage(
+                    imageUrl:
+                        'https://lumiere-a.akamaihd.net/v1/images/p_thejunglebook2016_19751_6b8cfcec.jpeg?region=0%2C0%2C540%2C810',
+                  ),
+                ),
+                const SizedBox(height: 43),
+                const Text('The Jungle Book', style: Styles.textStyles30),
+                const SizedBox(height: 6),
+                Opacity(
+                  opacity: 0.7,
+                  child: Text(
+                    'Rudyard Kipling',
+                    style: Styles.textStyles18.copyWith(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                const BookRating(
+                  rating: 4.8,
+                  count: 168,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
+                const SizedBox(height: 37),
+                const BooksActions(),
+                const SizedBox(height: 37),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'You can also like',
+                    style: Styles.textStyles14.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                const SimilerBooksListview(),
+                const SizedBox(height: 37),
+              ],
             ),
           ),
-          const SizedBox(height: 43),
-          const Text('The Jungle Book', style: Styles.textStyles30),
-          const SizedBox(height: 6),
-          Opacity(
-            opacity: 0.7,
-            child: Text(
-              'Rudyard Kipling',
-              style: Styles.textStyles18.copyWith(
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-          const BookRating(
-            rating: 4.8,
-            count: 168,
-            mainAxisAlignment: MainAxisAlignment.center,
-          ),
-          const SizedBox(height: 37),
-          const BooksActions(),
-
-          const SizedBox(height: 37),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'You can also like',
-              style: Styles.textStyles14.copyWith(fontWeight: FontWeight.w600),
-            ),
-          ),
-          const SizedBox(height: 16),
-          const SimilerBooksListview(),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
