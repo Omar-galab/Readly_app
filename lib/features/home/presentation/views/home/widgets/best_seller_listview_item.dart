@@ -7,8 +7,8 @@ import 'package:readly/models/book_model/book_model.dart';
 import 'package:readly/features/home/presentation/views/home/widgets/book_rating.dart';
 import 'package:readly/features/home/presentation/views/home/widgets/custom_book_image.dart';
 
-class BestSellerListviewItem extends StatelessWidget {
-  const BestSellerListviewItem({super.key, required this.bookModel});
+class BookListviewItem extends StatelessWidget {
+  const BookListviewItem({super.key, required this.bookModel});
   final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
