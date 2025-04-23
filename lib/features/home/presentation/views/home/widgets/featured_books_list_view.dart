@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:readly/core/utils/app_router.dart';
 import 'package:readly/core/widgets/custom_error_widget.dart';
 import 'package:readly/core/widgets/custom_loding_indecators.dart';
 import 'package:readly/features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
@@ -22,9 +24,17 @@ class FeatureListViewItems extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: CustomBookImage(
-                    imageUrl:
-                        state.books[index].volumeInfo.imageLinks.thumbnail,
+                  child: GestureDetector(
+                    onTap:
+                        () => GoRouter.of(context).push(
+                          AppRouter.kBookDetailsView,
+                          extra: state.books[index],
+                        ),
+                    child: CustomBookImage(
+                      imageUrl:
+                          state.books[index].volumeInfo.imageLinks?.thumbnail ??
+                          '',
+                    ),
                   ),
                 );
               },

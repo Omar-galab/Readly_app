@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:readly/core/widgets/custom_error_widget.dart';
 import 'package:readly/core/widgets/custom_loding_indecators.dart';
-import 'package:readly/features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
+import 'package:readly/features/home/presentation/manger/reletive_books_cubit/reletive_books_cubit.dart';
 import 'package:readly/features/home/presentation/views/home/widgets/custom_book_image.dart';
 
 class SimilerBooksListview extends StatelessWidget {
@@ -10,9 +10,9 @@ class SimilerBooksListview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
+    return BlocBuilder<ReletiveBooksCubit, ReletiveBooksState>(
       builder: (context, state) {
-        if (state is FeaturedBooksSuccess) {
+        if (state is ReletiveBooksSuccess) {
           return SizedBox(
             height: MediaQuery.of(context).size.height * 0.15,
             child: ListView.builder(
@@ -24,13 +24,14 @@ class SimilerBooksListview extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 5),
                   child: CustomBookImage(
                     imageUrl:
-                        state.books[index].volumeInfo.imageLinks.thumbnail,
+                        state.books[index].volumeInfo.imageLinks?.thumbnail ??
+                        '',
                   ),
                 );
               },
             ),
           );
-        } else if (state is FeaturedBooksFailure) {
+        } else if (state is ReletiveBooksFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);
         } else {
           return const CustomLodingIndecators();
