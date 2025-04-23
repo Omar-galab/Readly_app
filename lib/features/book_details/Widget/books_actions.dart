@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:readly/core/utils/launch_url.dart';
 import 'package:readly/core/widgets/custom_button.dart';
 import 'package:readly/models/book_model/book_model.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class BooksActions extends StatelessWidget {
   const BooksActions({super.key, required this.bookModel});
