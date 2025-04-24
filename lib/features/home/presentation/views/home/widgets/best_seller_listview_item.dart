@@ -31,7 +31,7 @@ class BookListviewItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(
-                      bookModel.volumeInfo.title!,
+                      bookModel.volumeInfo.title ?? '',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: Styles.textStyles20.copyWith(
@@ -41,7 +41,10 @@ class BookListviewItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 3),
                   Text(
-                    bookModel.volumeInfo.authors![0],
+                    (bookModel.volumeInfo.authors != null &&
+                            bookModel.volumeInfo.authors!.isNotEmpty)
+                        ? bookModel.volumeInfo.authors!.first
+                        : 'Unknown Author',
                     style: Styles.textStyles14,
                   ),
                   const SizedBox(height: 3),
