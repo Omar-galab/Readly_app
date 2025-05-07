@@ -1,6 +1,7 @@
 # readly
 
-A new Flutter project.
+is a Flutter-powered mobile app that allows users to browse and discover books using the Google Books API.
+It features a clean interface, API integration for live book data, and basic functionality for listing, viewing, and searching books
 
 ## Getting Started
 
